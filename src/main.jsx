@@ -7,6 +7,9 @@ import Login from "./components/Login.jsx";
 import CartPage from "./components/CartPage.jsx";
 import DetailedPage from "./components/DetailedPage.jsx";
 import Home from "./components/Home.jsx";
+import CommonCategory from "./components/common_for_category/CommonCategory.jsx";
+import { Provider } from "react-redux";
+import store from "./components/store/configureStore.js";
 
 const routes = createBrowserRouter([
   {
@@ -16,6 +19,10 @@ const routes = createBrowserRouter([
       {
         path: "/",
         element: <Home/>,
+      },
+      {
+        path:'/:category',
+        element:<CommonCategory/>
       },
 
       {
@@ -35,7 +42,9 @@ const routes = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <RouterProvider router={routes}>
+  <Provider store={store}>
+    <RouterProvider router={routes}>
     <App />
   </RouterProvider>
+  </Provider>
 );

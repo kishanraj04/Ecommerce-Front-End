@@ -1,8 +1,16 @@
 import React from 'react'
 import { FaSearch } from "react-icons/fa";
+import { useSelector } from 'react-redux';
+import { BiSolidCartAdd } from "react-icons/bi";
+import { NavLink } from 'react-router-dom';
+
 
 
 function Header() {
+
+ const cartItem = useSelector((state)=>state.cart.cartItem)
+ const cartItemqty = useSelector((state)=>state.cart.cartItemqty)
+
   return (
     <div className='flex bg-black h-[5rem] text-white justify-between items-center shadow-lg'>
 
@@ -22,8 +30,14 @@ function Header() {
                  </div>
             </div>
 
-            <div>
+            <div className='flex justify-center items-center gap-6 w-[30%] h-[50%]'>
                   <button>login</button>
+                  <div className='relative'>
+                    <NavLink to="/cart">
+                    <BiSolidCartAdd size={30}/>
+                    </NavLink>
+                    <p className='absolute -top-4 -right-1'>{cartItemqty}</p>
+                  </div>
             </div>
         </div>
     </div>
